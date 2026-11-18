@@ -198,7 +198,7 @@ estimate_weighted_plr <- function(data_in_path, covs, id_var, weight_var, rhs0, 
         grace_end_day = (grace_intrv_end + 1) * pre_grace_length - 1,
         time = ifelse(
           t_intrv <= grace_intrv_end,
-          # Pre-grace: (t_intrv + 1) * length - 1
+          # Grace period: (t_intrv + 1) * length - 1
           (t_intrv + 1) * pre_grace_length - 1,
           # Post-grace: add post_grace_length for each interval after grace period
           grace_end_day + (t_intrv - grace_intrv_end) * post_grace_length
