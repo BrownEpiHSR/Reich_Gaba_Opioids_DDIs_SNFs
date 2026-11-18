@@ -11,8 +11,7 @@ Input dataset:
 					  If missing, clone was not artificially censored.
 			- 00_create_artificial_censoring_vars.sas shows how art_cens_d was generated.
 		- trt_init_d: for the gabapentinoids + opioids strategy (assign = 1), trt_init_d
-					  is the date that both gabapentinoids and opioids were administered by
-					  during the grace period; in DATE9. format.
+					  is the date by which both medication classes had been administered; in DATE9. format.
 		- outcome variables: variables with the date a given outcome occurred in DATE9. format.
 			- the date can be anytime after day 0, or it can be set to missing.
 			- these outcome variable names are as follows:
@@ -91,11 +90,11 @@ options mprint mlogic symbolgen;
 
 			do while (intrv_start_day <= &study_end_day.);
 
-				/* Pre-grace period discrete-time intervals */
+				/* During the grace period discrete-time intervals */
 				if intrv_start_day <= &grace_day_end. then do;
 					intrv_end_day = intrv_start_day + &pre_grace_length. - 1;
 
-					/* Ensure pre-grace interval doesn't spill into post-grace period */
+					/* Ensure these intervals don't spill into post-grace period */
 					if intrv_end_day > &grace_day_end. then intrv_end_day = &grace_day_end.;
 
 				end;
