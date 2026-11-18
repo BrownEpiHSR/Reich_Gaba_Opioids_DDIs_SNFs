@@ -363,7 +363,7 @@ death_nonstab_model1 <- estimate_weighted_plr(
   post_grace_length = 3, # length of discrete-time intervals after the end of the grace period (e.g., 3-day intervals)
   outcome_name = "death",# used to name folder, datasets, and figures
   model_counter = 1,     # used to name folder
-  save_path = "//your path"
+  save_path = "//your/path"
 )
 
 # Stabilized weights (all-cause mortality)
