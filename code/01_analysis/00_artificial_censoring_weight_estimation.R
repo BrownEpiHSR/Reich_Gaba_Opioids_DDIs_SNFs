@@ -612,7 +612,7 @@ fit_artificial_cens_weights <- function(data_in_path, outcome_name, covs, id_var
     filter(art_cens_ipw >= quantile(art_cens_ipw, 0.998, na.rm = TRUE)) %>%
     ungroup() %>%
     group_by({{ id_var }}, assign) %>%
-    slice_max(art_cens_ipw, n = 1, with_ties = FALSE) %>% # Ensures you only take one row per unique ID
+    slice_max(art_cens_ipw, n = 1, with_ties = FALSE) %>% # Keep the row with the largest weight for each patient within each treatment strategy
     ungroup() %>%
     arrange(assign) %>%
     select(
@@ -629,7 +629,7 @@ fit_artificial_cens_weights <- function(data_in_path, outcome_name, covs, id_var
     filter(art_cens_stab_ipw >= quantile(art_cens_stab_ipw, 0.998, na.rm = TRUE)) %>%
     ungroup() %>%
     group_by({{ id_var }}, assign) %>%
-    slice_max(art_cens_stab_ipw, n = 1, with_ties = FALSE) %>% # Ensures you only take one row per unique ID
+    slice_max(art_cens_stab_ipw, n = 1, with_ties = FALSE) %>% # Keep the row with the largest weight for each patient within each treatment strategy
     ungroup() %>%
     arrange(assign) %>%
     select(
