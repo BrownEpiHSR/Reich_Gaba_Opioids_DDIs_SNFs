@@ -21,7 +21,7 @@ Input dataset:
 				- outcome_fri: fall-related injury rehospitalization
 				- outcome_snf_nohosp: SNF discharge without hospital transfer
 		- natural censoring variables: variables with the date natural censoring events occurred.
-		  (e.g., end of follow-up, study period end, medicare disenrollment, etc.)
+		  (e.g., end of follow-up, study period end, Medicare disenrollment, etc.)
 			- the date can be anytime on or after day 0, or it can be set to missing.
 			- these natural censoring variables are as follows:
 				- censor_follow_end: Last date of follow-up (i.e., 99 days)
