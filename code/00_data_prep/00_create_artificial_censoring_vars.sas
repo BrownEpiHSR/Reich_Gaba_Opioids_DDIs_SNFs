@@ -10,12 +10,12 @@ The treatment strategies for this study are as follows:
 	2. Gabapentinoids + opioids strategy (assign = 1)
 	   Administered any dose of opioids and gabapentinoids within 3 days of SNF admission.
 
-	- Clones are artificially censored as soon as they deviate from their assigned treatment
+	- Clones are artificially censored at the end of the day they deviate from their assigned treatment
       strategy.
-		- For the opioids-only strategy (assign = 0), the clone is censored as soon as they
-		  receive a gabapentinoid (in the grace period), or the clone is censored on the 
+		- For the opioids-only strategy (assign = 0), the clone is censored at the end of the day they
+		  receive a gabapentinoid (in the grace period), or the clone is censored at the end of the 
 		  last day of the grace period if they are not administered an opioid. 
-		- For the gabapentinoids + opioids strategy (assign = 1), the clone is censored on 
+		- For the gabapentinoids + opioids strategy (assign = 1), the clone is censored at the end of
           the last day of the grace period if they are not administered opioids and gabapentinoids
 		  by that day.
 
