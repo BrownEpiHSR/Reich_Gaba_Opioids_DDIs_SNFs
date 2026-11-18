@@ -1,5 +1,5 @@
 # Description
-This repository contains data documentation and code supporting the analyses in "Post-Acute Outcomes After Early Gabapentinoid–Opioid Use in Skilled Nursing Facilities".
+This repository contains data documentation and code supporting the analyses in "Post-Acute Outcomes After Early Gabapentinoid–Opioid Use in Skilled Nursing Facilities."
 
 ## Repository Contents
 - `data_documentation/`: Contains general study information and additional supplementary material.
