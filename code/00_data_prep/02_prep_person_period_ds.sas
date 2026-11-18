@@ -169,7 +169,7 @@ options mprint mlogic symbolgen;
 		/***********************************************************************************************************************************/
 		
 		proc sort data = pp_&outcome.2;
-			by &id_var. assign;
+			by &id_var. assign t_intrv;
 		run;
 
 		data pp_&outcome.3;
