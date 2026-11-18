@@ -77,7 +77,7 @@ construct_ci <- function(bootstrap_in_path, wt_plr_in_path,
     geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
     # Plot the risk difference curve
     geom_line(aes(y = cid), color = "#2EC4B6") + 
-    # Plot the lower and upper confidence limits
+    # Plot the lower and upper confidence (credible) limits
     geom_ribbon(aes(ymin = cid_lc, ymax = cid_uc), alpha = 0.15, fill = "#2EC4B6") +
     # Axis scale
     scale_x_continuous(limits = c(0, max(final_estimates_day$time, na.rm = TRUE)), 
@@ -102,7 +102,7 @@ construct_ci <- function(bootstrap_in_path, wt_plr_in_path,
     geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
     # Plot the risk ratio curve
     geom_line(aes(y = cir), color = "#2EC4B6") +
-    # Plot the lower and upper confidence limits
+    # Plot the lower and upper confidence (credible) limits
     geom_ribbon(aes(ymin = cir_lc, ymax = cir_uc), alpha= 0.15, fill = "#2EC4B6") +
     # Axis scale
     scale_x_continuous(limits = c(0, max(final_estimates_day$time, na.rm = TRUE)), 
