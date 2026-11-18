@@ -255,12 +255,13 @@ make_results_table <- function(model_dict, outcome_name, t_targets, save_path) {
       cid_uc_perc = cid_uc * 100,
       
       # Formatted columns
+      follow_days = time + 1,
       CumInc_Perc_1 = fmt_ci(pr_ev_1_perc, pr_ev_lc_1_perc, pr_ev_uc_1_perc),
       CumInc_Perc_0 = fmt_ci(pr_ev_0_perc, pr_ev_lc_0_perc, pr_ev_uc_0_perc),
       RD_Perc = fmt_ci(cid_perc, cid_lc_perc, cid_uc_perc),
       RR = fmt_ci(cir, cir_lc, cir_uc)
     ) %>%
-    select(Outcome, Model, time, CumInc_Perc_1, CumInc_Perc_0, RD_Perc, RR)
+    select(Outcome, Model, follow_days, CumInc_Perc_1, CumInc_Perc_0, RD_Perc, RR)
 
   ## Save dataset as CSV file
   write.csv(final_table, file.path(dir, "final_table_est.csv"))
@@ -284,6 +285,6 @@ example_make_results_table <- make_results_table(
   model_dict = model_dict,
   outcome_name = "death", # Name for the outcome. This will appear in the table output
   t_targets = c(29, 98),  # Vector of time points you want to include in the results table. You can include one or more values in this vector, which should be based on the time variable (i.e., day-level)
-  save_path = "//your/path/Output/"
+  save_path = "//your/path"
 )
 
