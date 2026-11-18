@@ -24,7 +24,7 @@ Input dataset:
 		  (e.g., end of follow-up, study period end, Medicare disenrollment, etc.)
 			- the date can be anytime on or after day 0, or it can be set to missing.
 			- these natural censoring variables are as follows:
-				- censor_follow_end: Last date of follow-up (i.e., 99 days)
+				- censor_follow_end: Last date of follow-up (i.e., SNF admission date + 98 [the 99th follow-up day])
 				- censor_study_end: December 31, 2023
 				- censor_disenroll: Last date of Medicare enrollment (or first day of enrollment in Medicare Advantage)
 				- outcome_death: For non-mortality outcomes, follow-up ends at date of death.
