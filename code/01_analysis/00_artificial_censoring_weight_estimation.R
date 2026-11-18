@@ -43,7 +43,6 @@ library(tidyverse)
 library(broom)
 library(dplyr)
 library(modelsummary)
-library(data.table)
 library(rlang)
 library(fs)
 library(here)
@@ -185,7 +184,7 @@ fit_artificial_cens_weights <- function(data_in_path, outcome_name, covs, id_var
                                  by=join_by({{ id_var }}, t_intrv, assign))
     # time intervals not included in the models above for a given treatment assignment will have pr_art_cens_n = NA and pr_art_cens_d = NA
   
-  # Ensure order of variables before calculating artificial censoring weights in each interval
+  # Ensure order of rows before calculating artificial censoring weights in each interval
   setDT(outcome_data_join)
   id_str <- rlang::as_name(rlang::enquo(id_var))
   setorderv(outcome_data_join, cols = c(id_str, "assign", "t_intrv"))
@@ -303,6 +302,7 @@ fit_artificial_cens_weights <- function(data_in_path, outcome_name, covs, id_var
   
   ggsave(
     filename = file.path(dir, "prob_art_cens_distribution.png"),
+    plot = dist_prob,
     width = 8,
     height = 6,
     dpi = 300
@@ -423,7 +423,7 @@ fit_artificial_cens_weights <- function(data_in_path, outcome_name, covs, id_var
   )
   
   ## Construct table with % of clones artificially censored at each interval during the grace period
-  # Calculate instantaneous censoring percentage at each time interval
+  # Calculate percentage of baseline clones censored at each time interval
   censoring_by_time <- outcome_data_join %>%
     group_by(assign) %>%
     mutate(n_clones = n_distinct({{ id_var }}[t_intrv == 0])) %>%
