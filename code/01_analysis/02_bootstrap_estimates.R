@@ -27,7 +27,6 @@ library(data.table)
 library(haven)
 library(tidyverse)
 library(dplyr)
-library(data.table)
 library(rlang)
 library(modelsummary)
 library(fs)
@@ -216,7 +215,7 @@ boot_est <- function(data_in_path, outcome_name, art_cens_covs, out_mod_covs=NUL
       bootstrap_data = inner_join(data_in, id_list, by = join_by({{ id_var }}))
     
     } else {
-      ## Sample IDs from a Poisson distribution
+      ## Draw one Poisson frequency weight per patient
       # Note that we need to sample by the unique person to account for cloning
       data_in[, freqwt:=rpois(n=1, lambda=1), by=factor({{ id_var }})]
       
@@ -491,7 +490,7 @@ boot_est <- function(data_in_path, outcome_name, art_cens_covs, out_mod_covs=NUL
       if (n_glm_wt0$converged && d_glm_wt0$converged && n_glm_wt1$converged && d_glm_wt1$converged && d_glm_pe0$converged && d_glm_pe1$converged) {
         
         if (separation_detected) {
-          if (separation_detected) message("Attempt ", attempt_count, "glm.fit: fitted probabilities numerically 0 or 1 occurred: Skipping.")
+          message("Attempt ", attempt_count, " glm.fit: fitted probabilities numerically 0 or 1 occurred: Skipping.")
           
           next
         }
